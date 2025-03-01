@@ -10,6 +10,7 @@ import { MaterialCommunityIcons } from "react-native-vector-icons";
 import HomeScreen from "../screens/HomeScreen";
 import GroupsScreen from "../screens/GroupsScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import CreateGroupScreen from "../screens/CreateGroupScreen";
 
 const Tab = createBottomTabNavigator();
 const { width } = Dimensions.get("window");

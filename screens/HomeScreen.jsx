@@ -9,6 +9,7 @@ import {
   TextInput,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useNavigation } from '@react-navigation/native';
 
 import electronicsImage from "../assets/electronics.png";
 import fashionImage from "../assets/fashion.png";
@@ -19,6 +20,12 @@ import blackCowImage from "../assets/cow.png";
 import tomatoImage from "../assets/tomato.png";
 
 const HomeScreen = () => {
+  const navigation = useNavigation();
+
+  const handleSeeAll = () => {
+    navigation.navigate('ProductList');
+  };
+
   return (
     <ScrollView style={styles.container}>
       {/* Search Bar */}
@@ -94,7 +101,9 @@ const HomeScreen = () => {
       {/* Featured Products */}
       <View style={styles.featuredHeader}>
         <Text style={styles.sectionTitle}>Featured Products</Text>
-        <Text style={styles.seeAll}>See All</Text>
+        <TouchableOpacity onPress={handleSeeAll}>
+          <Text style={styles.seeAll}>See All</Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.productsContainer}>
         {[

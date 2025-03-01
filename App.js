@@ -9,6 +9,9 @@ import ForgotPassword from "./screens/ForgotPassword";
 import ResetPassword from "./screens/ResetPassword";
 import HomeScreen from "./screens/HomeScreen";
 import TabNavigator from "./navigators/TabNavigator";
+import ProductList from "./screens/ProductList";
+import ProductDetails from "./screens/ProductDetails";
+import CreateGroupScreen from "./screens/CreateGroupScreen";
 
 const Stack = createStackNavigator();
 
@@ -49,6 +52,21 @@ const App = () => {
         <Stack.Screen
           name="HomeScreen"
           component={TabNavigator}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ProductList"
+          component={ProductList}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ProductDetails"
+          component={ProductDetails}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="CreateGroupScreen"
+          component={CreateGroupScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
