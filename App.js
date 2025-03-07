@@ -12,6 +12,9 @@ import TabNavigator from "./navigators/TabNavigator";
 import ProductList from "./screens/ProductList";
 import ProductDetails from "./screens/ProductDetails";
 import CreateGroupScreen from "./screens/CreateGroupScreen";
+import TopupScreen from "./screens/TopupScreen";
+import WalletScreen from "./screens/WalletScreen";
+import TransactionScreen from "./screens/TransactionScreen";
 
 const Stack = createStackNavigator();
 
@@ -67,6 +70,21 @@ const App = () => {
         <Stack.Screen
           name="CreateGroupScreen"
           component={CreateGroupScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Topup"
+          component={TopupScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Wallet"
+          component={WalletScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="TransactionScreen"
+          component={TransactionScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

@@ -11,6 +11,7 @@ import HomeScreen from "../screens/HomeScreen";
 import GroupsScreen from "../screens/GroupsScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import CreateGroupScreen from "../screens/CreateGroupScreen";
+import WalletScreen from "../screens/WalletScreen";
 
 const Tab = createBottomTabNavigator();
 const { width } = Dimensions.get("window");
@@ -110,6 +111,15 @@ const TabNavigator = () => {
         options={{
           tabBarLabel: "Groups",
           tabBarIconName: "group",
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="Wallet"
+        component={WalletScreen}
+        options={{
+          tabBarLabel: "Wallet",
+          tabBarIconName: "wallet",
           headerShown: false,
         }}
       />
