@@ -138,12 +138,11 @@ const TransactionScreen = ({ navigation }) => {
           <Ionicons name="arrow-back" size={24} color="black" />
         </TouchableOpacity>
 
-        <Text style={styles.headerTitle}>Transaction History</Text>
-
         <TouchableOpacity style={styles.notificationButton}>
           <Ionicons name="notifications-outline" size={24} color="black" />
         </TouchableOpacity>
       </View>
+      <Text style={styles.headerTitle}>Transaction History</Text>
 
       <FlatList
         data={transactions}
@@ -174,8 +173,9 @@ const styles = StyleSheet.create({
     padding: 5,
   },
   headerTitle: {
-    fontSize: 20,
+    fontSize: 30,
     fontWeight: "bold",
+    marginBottom: 20,
   },
   notificationButton: {
     padding: 5,

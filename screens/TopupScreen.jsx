@@ -41,8 +41,6 @@ const TopupScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#F5F5F5" />
-
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.backButton}
@@ -172,13 +170,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#F5F5F5",
+    paddingTop: 40,
     paddingHorizontal: 16,
+    marginTop: 16,
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginTop: 10,
     marginBottom: 20,
   },
   backButton: {
@@ -256,10 +255,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    paddingHorizontal: 20,
-    paddingTop: 20,
-    paddingBottom: 40,
-    maxHeight: "70%",
+    padding: 20,
+    height: 300,
   },
   modalTitle: {
     fontSize: 18,

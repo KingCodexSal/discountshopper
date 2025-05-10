@@ -25,15 +25,14 @@ const ProductDetails = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        style={styles.backButton}
-        onPress={() => navigation.goBack()}
-      >
-        <MaterialIcons name="arrow-back" size={28} color="black" />
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.notificationButton}>
-        <MaterialIcons name="notifications-none" size={28} color="black" />
-      </TouchableOpacity>
+      <View style={styles.topHeader}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <MaterialIcons name="arrow-back" size={28} color="black" />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <MaterialIcons name="notifications-none" size={28} color="black" />
+        </TouchableOpacity>
+      </View>
       <Text style={styles.header}>Details</Text>
       <View style={styles.imageContainer}>
         <Image source={product.image} style={styles.productImage} />
@@ -86,35 +85,29 @@ const ProductDetails = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FAFAFA",
+    backgroundColor: "#F8F8F8",
     paddingHorizontal: 16,
     paddingTop: 40,
+  },
+  topHeader: {
+    flexDirection: "row",
+    alignItems: "center",
     justifyContent: "space-between",
-  },
-  backButton: {
-    position: "absolute",
-    top: 40,
-    left: 16,
-    zIndex: 10,
-  },
-  notificationButton: {
-    position: "absolute",
-    top: 40,
-    right: 16,
-    zIndex: 10,
+    paddingTop: 16,
   },
   header: {
     fontSize: 24,
     fontWeight: "bold",
     textAlign: "left",
     marginBottom: 16,
-    marginTop: 50,
+    marginTop: 30,
   },
   imageContainer: {
     backgroundColor: "#F5F5F5",
     borderRadius: 12,
     padding: 16,
     alignItems: "center",
+    marginTop: 12,
   },
   productImage: {
     width: "100%",
@@ -203,6 +196,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: "center",
     marginBottom: 20,
+    marginTop: 40,
   },
   paymentButtonText: {
     color: "#000",

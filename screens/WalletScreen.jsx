@@ -45,13 +45,19 @@ const WalletScreen = ({ navigation }) => {
       </View>
 
       <View style={styles.actionsContainer}>
-        <TouchableOpacity style={styles.actionItem}>
+        <TouchableOpacity
+          style={styles.actionItem}
+          onPress={() => navigation.navigate("Topup")}
+        >
           <View style={styles.actionIconContainer}>
             <Ionicons name="wallet-outline" size={24} color="#FF9800" />
           </View>
           <Text style={styles.actionText}>Top-up Wallet</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.actionItem}>
+        <TouchableOpacity
+          style={styles.actionItem}
+          onPress={() => navigation.navigate("TransactionScreen")}
+        >
           <View style={styles.actionIconContainer}>
             <Ionicons name="time-outline" size={24} color="#FF9800" />
           </View>
@@ -164,6 +170,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 20,
+    marginTop: 16,
   },
   headerTitle: {
     fontSize: 24,

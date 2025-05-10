@@ -111,7 +111,7 @@ const ProductList = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 20,
+    paddingTop: 40,
     backgroundColor: "#f8f8f8",
   },
   header: {
@@ -119,11 +119,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: 16,
-    paddingVertical: 10,
-    backgroundColor: "#fff",
-    borderBottomWidth: 1,
-    borderBottomColor: "#ddd",
-    paddingTop: 40,
+    paddingTop: 16,
+    paddingBottom: 20,
   },
   backIcon: {
     marginRight: 10,
