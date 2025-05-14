@@ -10,151 +10,159 @@ import { Ionicons, MaterialIcons, FontAwesome5 } from "@expo/vector-icons";
 
 const WalletScreen = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>My Wallet</Text>
-        <TouchableOpacity style={styles.notificationButton}>
-          <Ionicons name="notifications-outline" size={24} color="black" />
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.balanceCard}>
-        <View style={styles.balanceTopSection}>
-          <View>
-            <View style={styles.availableBalanceRow}>
-              <Text style={styles.availableBalanceText}>Available Balance</Text>
-              <Ionicons
-                name="eye-outline"
-                size={18}
-                color="white"
-                style={styles.eyeIcon}
-              />
-            </View>
-            <Text style={styles.balanceAmount}>₦30,000</Text>
-          </View>
-          <TouchableOpacity
-            style={styles.addMoneyButton}
-            onPress={() => navigation.navigate("Topup")}
-          >
-            <Text style={styles.addMoneyButtonText}>Add Money</Text>
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>My Wallet</Text>
+          <TouchableOpacity style={styles.notificationButton}>
+            <Ionicons name="notifications-outline" size={24} color="black" />
           </TouchableOpacity>
         </View>
-        <Text style={styles.balanceNote}>
-          ₦30,000 for the purchase of 1 basket of tomato
-        </Text>
-      </View>
 
-      <View style={styles.actionsContainer}>
-        <TouchableOpacity
-          style={styles.actionItem}
-          onPress={() => navigation.navigate("Topup")}
-        >
-          <View style={styles.actionIconContainer}>
-            <Ionicons name="wallet-outline" size={24} color="#FF9800" />
+        <View style={styles.balanceCard}>
+          <View style={styles.balanceTopSection}>
+            <View>
+              <View style={styles.availableBalanceRow}>
+                <Text style={styles.availableBalanceText}>
+                  Available Balance
+                </Text>
+                <Ionicons
+                  name="eye-outline"
+                  size={18}
+                  color="white"
+                  style={styles.eyeIcon}
+                />
+              </View>
+              <Text style={styles.balanceAmount}>₦30,000</Text>
+            </View>
+            <TouchableOpacity
+              style={styles.addMoneyButton}
+              onPress={() => navigation.navigate("Topup")}
+            >
+              <Text style={styles.addMoneyButtonText}>Add Money</Text>
+            </TouchableOpacity>
           </View>
-          <Text style={styles.actionText}>Top-up Wallet</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.actionItem}
-          onPress={() => navigation.navigate("TransactionScreen")}
-        >
-          <View style={styles.actionIconContainer}>
-            <Ionicons name="time-outline" size={24} color="#FF9800" />
-          </View>
-          <Text style={styles.actionText}>Transaction History</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.actionItem}>
-          <View style={styles.actionIconContainer}>
-            <Ionicons
-              name="information-circle-outline"
-              size={24}
-              color="#FF9800"
-            />
-          </View>
-          <Text style={styles.actionText}>Refund Information</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.rewardsCard}>
-        <View style={styles.rewardsTextContainer}>
-          <Text style={styles.rewardsTitle}>Your Rewards Await</Text>
-          <Text style={styles.rewardsDescription}>
-            ₦15 Bonus Credit - Apply this to your next purchase
+          <Text style={styles.balanceNote}>
+            ₦30,000 for the purchase of 1 basket of tomato
           </Text>
-          <Text style={styles.rewardsExpiry}>Expires in 7 days</Text>
         </View>
-        <TouchableOpacity style={styles.claimButton}>
-          <Text style={styles.claimButtonText}>Claim Now</Text>
-        </TouchableOpacity>
+
+        <View style={styles.actionsContainer}>
+          <TouchableOpacity
+            style={styles.actionItem}
+            onPress={() => navigation.navigate("Topup")}
+          >
+            <View style={styles.actionIconContainer}>
+              <Ionicons name="wallet-outline" size={24} color="#FF9800" />
+            </View>
+            <Text style={styles.actionText}>Top-up Wallet</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.actionItem}
+            onPress={() => navigation.navigate("TransactionScreen")}
+          >
+            <View style={styles.actionIconContainer}>
+              <Ionicons name="time-outline" size={24} color="#FF9800" />
+            </View>
+            <Text style={styles.actionText}>Transaction History</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.actionItem}>
+            <View style={styles.actionIconContainer}>
+              <Ionicons
+                name="information-circle-outline"
+                size={24}
+                color="#FF9800"
+              />
+            </View>
+            <Text style={styles.actionText}>Refund Information</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.rewardsCard}>
+          <View style={styles.rewardsTextContainer}>
+            <Text style={styles.rewardsTitle}>Your Rewards Await</Text>
+            <Text style={styles.rewardsDescription}>
+              ₦15 Bonus Credit - Apply this to your next purchase
+            </Text>
+            <Text style={styles.rewardsExpiry}>Expires in 7 days</Text>
+          </View>
+          <TouchableOpacity style={styles.claimButton}>
+            <Text style={styles.claimButtonText}>Claim Now</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.transactionsHeader}>
+          <Text style={styles.transactionsTitle}>Recent Transactions</Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("TransactionScreen")}
+          >
+            <Text style={styles.seeAllText}>See All</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.transactionsList}>
+          <View style={styles.transactionItem}>
+            <View style={styles.transactionIconContainer}>
+              <Ionicons
+                name="arrow-up-circle-outline"
+                size={24}
+                color="green"
+              />
+            </View>
+            <View style={styles.transactionDetails}>
+              <Text style={styles.transactionTitle}>Top-up</Text>
+              <Text style={styles.transactionStatus}>Completed</Text>
+            </View>
+            <View style={styles.transactionAmount}>
+              <Text style={styles.amountPositive}>+₦500</Text>
+              <Text style={styles.transactionTime}>1 hour ago</Text>
+            </View>
+          </View>
+
+          <View style={styles.transactionItem}>
+            <View style={styles.transactionIconContainer}>
+              <Ionicons name="gift-outline" size={24} color="purple" />
+            </View>
+            <View style={styles.transactionDetails}>
+              <Text style={styles.transactionTitle}>Bonus Credit</Text>
+              <Text style={styles.transactionStatus}>Applied</Text>
+            </View>
+            <View style={styles.transactionAmount}>
+              <Text style={styles.amountPositive}>+₦500</Text>
+              <Text style={styles.transactionTime}>2 days ago</Text>
+            </View>
+          </View>
+
+          <View style={styles.transactionItem}>
+            <View style={styles.transactionIconContainer}>
+              <Ionicons name="return-down-back-outline" size={24} color="red" />
+            </View>
+            <View style={styles.transactionDetails}>
+              <Text style={styles.transactionTitle}>Refund for Order</Text>
+              <Text style={styles.transactionStatus}>Refunded</Text>
+            </View>
+            <View style={styles.transactionAmount}>
+              <Text style={styles.amountPositive}>+₦1500</Text>
+              <Text style={styles.transactionTime}>10 hours ago</Text>
+            </View>
+          </View>
+
+          <View style={styles.transactionItem}>
+            <View style={styles.transactionIconContainer}>
+              <Ionicons name="gift-outline" size={24} color="purple" />
+            </View>
+            <View style={styles.transactionDetails}>
+              <Text style={styles.transactionTitle}>Bonus Credit</Text>
+              <Text style={styles.transactionStatus}>Applied</Text>
+            </View>
+            <View style={styles.transactionAmount}>
+              <Text style={styles.amountPositive}>+₦500</Text>
+              <Text style={styles.transactionTime}>3 days ago</Text>
+            </View>
+          </View>
+        </View>
       </View>
-
-      <View style={styles.transactionsHeader}>
-        <Text style={styles.transactionsTitle}>Recent Transactions</Text>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("TransactionScreen")}
-        >
-          <Text style={styles.seeAllText}>See All</Text>
-        </TouchableOpacity>
-      </View>
-
-      <ScrollView style={styles.transactionsList}>
-        <View style={styles.transactionItem}>
-          <View style={styles.transactionIconContainer}>
-            <Ionicons name="arrow-up-circle-outline" size={24} color="green" />
-          </View>
-          <View style={styles.transactionDetails}>
-            <Text style={styles.transactionTitle}>Top-up</Text>
-            <Text style={styles.transactionStatus}>Completed</Text>
-          </View>
-          <View style={styles.transactionAmount}>
-            <Text style={styles.amountPositive}>+₦500</Text>
-            <Text style={styles.transactionTime}>1 hour ago</Text>
-          </View>
-        </View>
-
-        <View style={styles.transactionItem}>
-          <View style={styles.transactionIconContainer}>
-            <Ionicons name="gift-outline" size={24} color="purple" />
-          </View>
-          <View style={styles.transactionDetails}>
-            <Text style={styles.transactionTitle}>Bonus Credit</Text>
-            <Text style={styles.transactionStatus}>Applied</Text>
-          </View>
-          <View style={styles.transactionAmount}>
-            <Text style={styles.amountPositive}>+₦500</Text>
-            <Text style={styles.transactionTime}>2 days ago</Text>
-          </View>
-        </View>
-
-        <View style={styles.transactionItem}>
-          <View style={styles.transactionIconContainer}>
-            <Ionicons name="return-down-back-outline" size={24} color="red" />
-          </View>
-          <View style={styles.transactionDetails}>
-            <Text style={styles.transactionTitle}>Refund for Order</Text>
-            <Text style={styles.transactionStatus}>Refunded</Text>
-          </View>
-          <View style={styles.transactionAmount}>
-            <Text style={styles.amountPositive}>+₦1500</Text>
-            <Text style={styles.transactionTime}>10 hours ago</Text>
-          </View>
-        </View>
-
-        <View style={styles.transactionItem}>
-          <View style={styles.transactionIconContainer}>
-            <Ionicons name="gift-outline" size={24} color="purple" />
-          </View>
-          <View style={styles.transactionDetails}>
-            <Text style={styles.transactionTitle}>Bonus Credit</Text>
-            <Text style={styles.transactionStatus}>Applied</Text>
-          </View>
-          <View style={styles.transactionAmount}>
-            <Text style={styles.amountPositive}>+₦500</Text>
-            <Text style={styles.transactionTime}>3 days ago</Text>
-          </View>
-        </View>
-      </ScrollView>
-    </View>
+    </ScrollView>
   );
 };
 

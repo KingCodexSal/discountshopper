@@ -8,13 +8,14 @@ import {
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Checkbox } from "react-native-paper";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const SignUpScreen = ({ navigation }) => {
   const [checked, setChecked] = React.useState(false);
   const [passwordVisible, setPasswordVisible] = React.useState(false);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.content}>
         <Text style={styles.title}>Let's get started</Text>
 
@@ -57,12 +58,15 @@ const SignUpScreen = ({ navigation }) => {
             color={checked ? "green" : undefined}
           />
           <Text>
-            By creating an account, you agree to our{" "}
+            By creating an account, you agree to our{"\n"}
             <Text style={styles.link}>Terms and Conditions</Text>
           </Text>
         </View>
 
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate("LoginScreen")}
+        >
           <Text style={styles.buttonText}>Sign up</Text>
         </TouchableOpacity>
 
@@ -94,7 +98,7 @@ const SignUpScreen = ({ navigation }) => {
           Login
         </Text>
       </Text>
-    </View>
+    </SafeAreaView>
   );
 };
 

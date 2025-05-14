@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
 import { useRoute, RouteProp, useNavigation } from "@react-navigation/native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { ScrollView } from "react-native-gesture-handler";
 
 interface Product {
   name: string;
@@ -24,7 +25,7 @@ const ProductDetails = () => {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.topHeader}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <MaterialIcons name="arrow-back" size={28} color="black" />
@@ -78,7 +79,7 @@ const ProductDetails = () => {
       <TouchableOpacity style={styles.paymentButton}>
         <Text style={styles.paymentButtonText}>Proceed to Payment</Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 };
 

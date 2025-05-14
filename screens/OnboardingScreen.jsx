@@ -6,10 +6,11 @@ import {
   StyleSheet,
   ImageBackground,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const OnboardingScreen = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <ImageBackground
         source={require("../assets/background.jpg")}
         style={styles.background}
@@ -34,7 +35,7 @@ const OnboardingScreen = ({ navigation }) => {
           </View>
         </View>
       </ImageBackground>
-    </View>
+    </SafeAreaView>
   );
 };
 

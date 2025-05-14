@@ -9,7 +9,7 @@ import {
   TextInput,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 
 import electronicsImage from "../assets/electronics.png";
 import fashionImage from "../assets/fashion.png";
@@ -18,128 +18,133 @@ import fitnessImage from "../assets/fitness.png";
 import beautyImage from "../assets/beauty.png";
 import blackCowImage from "../assets/cow.png";
 import tomatoImage from "../assets/tomato.png";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
 
   const handleSeeAll = () => {
-    navigation.navigate('ProductList');
+    navigation.navigate("ProductList");
   };
 
   return (
-    <ScrollView style={styles.container}>
-      {/* Search Bar */}
-      <View style={styles.searchWrapper}>
-        <View style={styles.searchContainer}>
-          <Ionicons
-            name="search"
-            size={20}
-            color="#666"
-            style={styles.searchIcon}
-          />
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Search for products"
-            placeholderTextColor="#999"
-          />
-          <TouchableOpacity>
+    <SafeAreaProvider>
+      <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+        {/* Search Bar */}
+        <View style={styles.searchWrapper}>
+          <View style={styles.searchContainer}>
             <Ionicons
-              name="options-outline"
+              name="search"
+              size={20}
+              color="#666"
+              style={styles.searchIcon}
+            />
+            <TextInput
+              style={styles.searchInput}
+              placeholder="Search for products"
+              placeholderTextColor="#999"
+            />
+            <TouchableOpacity>
+              <Ionicons
+                name="options-outline"
+                size={24}
+                color="#FFA500"
+                style={styles.filterIcon}
+              />
+            </TouchableOpacity>
+          </View>
+          <TouchableOpacity style={styles.bellWrapper}>
+            <Ionicons
+              name="notifications-outline"
               size={24}
-              color="#FFA500"
-              style={styles.filterIcon}
+              color="#000"
+              style={styles.bellIcon}
             />
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.bellWrapper}>
-          <Ionicons
-            name="notifications-outline"
-            size={24}
-            color="#000"
-            style={styles.bellIcon}
-          />
-        </TouchableOpacity>
-      </View>
 
-      {/* Group Shopping Banner */}
-      <View style={styles.banner}>
-        <Text style={styles.bannerTitle}>Shop in Groups. Save Together.</Text>
-        <Text style={styles.bannerSubtitle}>
-          Discover great products and buy as a group for exclusive deals.
-        </Text>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.createButton}>
-            <Text style={styles.buttonText}>Create Group</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.joinButton}>
-            <Text style={styles.joinButtonText}>Join Group</Text>
+        {/* Group Shopping Banner */}
+        <View style={styles.banner}>
+          <Text style={styles.bannerTitle}>Shop in Groups. Save Together.</Text>
+          <Text style={styles.bannerSubtitle}>
+            Discover great products and buy as a group for exclusive deals.
+          </Text>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.createButton}>
+              <Text style={styles.buttonText}>Create Group</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.joinButton}>
+              <Text style={styles.joinButtonText}>Join Group</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* Categories */}
+        <Text style={styles.sectionTitle}>Categories</Text>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={styles.categoriesContainer}
+        >
+          {[
+            { name: "Electronics", image: electronicsImage },
+            { name: "Fashion", image: fashionImage },
+            { name: "Groceries", image: groceriesImage },
+            { name: "Fitness", image: fitnessImage },
+            { name: "Beauty", image: beautyImage },
+          ].map((category, index) => (
+            <View key={index} style={styles.categoryItem}>
+              <Image source={category.image} style={styles.categoryImage} />
+              <Text style={styles.categoryText}>{category.name}</Text>
+            </View>
+          ))}
+        </ScrollView>
+
+        {/* Featured Products */}
+        <View style={styles.featuredHeader}>
+          <Text style={styles.sectionTitle}>Featured Products</Text>
+          <TouchableOpacity onPress={handleSeeAll}>
+            <Text style={styles.seeAll}>See All</Text>
           </TouchableOpacity>
         </View>
-      </View>
-
-      {/* Categories */}
-      <Text style={styles.sectionTitle}>Categories</Text>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={styles.categoriesContainer}
-      >
-        {[
-          { name: "Electronics", image: electronicsImage },
-          { name: "Fashion", image: fashionImage },
-          { name: "Groceries", image: groceriesImage },
-          { name: "Fitness", image: fitnessImage },
-          { name: "Beauty", image: beautyImage },
-        ].map((category, index) => (
-          <View key={index} style={styles.categoryItem}>
-            <Image source={category.image} style={styles.categoryImage} />
-            <Text style={styles.categoryText}>{category.name}</Text>
-          </View>
-        ))}
-      </ScrollView>
-
-      {/* Featured Products */}
-      <View style={styles.featuredHeader}>
-        <Text style={styles.sectionTitle}>Featured Products</Text>
-        <TouchableOpacity onPress={handleSeeAll}>
-          <Text style={styles.seeAll}>See All</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.productsContainer}>
-        {[
-          {
-            name: "Black Cow",
-            description: "High quality cow meat",
-            price: "₦80,000",
-            oldPrice: "₦100,000",
-            minOrder: "10 units",
-            image: blackCowImage,
-          },
-          {
-            name: "Basket of Tomato",
-            description: "Fresh basket of tomatoes",
-            price: "₦30,000",
-            oldPrice: "₦50,000",
-            minOrder: "8 units",
-            image: tomatoImage,
-          },
-        ].map((product, index) => (
-          <View key={index} style={styles.productCard}>
-            <Image source={product.image} style={styles.productImage} />
-            <TouchableOpacity style={styles.heartIconWrapper}>
-              <Ionicons name="heart-outline" size={20} color="#FF6B00" />
-            </TouchableOpacity>
-            <Text style={styles.productName}>{product.name}</Text>
-            <Text style={styles.productDescription}>{product.description}</Text>
-            <View style={styles.priceRow}>
-              <Text style={styles.currentPrice}>{product.price}</Text>
-              <Text style={styles.oldPrice}>{product.oldPrice}</Text>
+        <View style={styles.productsContainer}>
+          {[
+            {
+              name: "Black Cow",
+              description: "High quality cow meat",
+              price: "₦80,000",
+              oldPrice: "₦100,000",
+              minOrder: "10 units",
+              image: blackCowImage,
+            },
+            {
+              name: "Basket of Tomato",
+              description: "Fresh basket of tomatoes",
+              price: "₦30,000",
+              oldPrice: "₦50,000",
+              minOrder: "8 units",
+              image: tomatoImage,
+            },
+          ].map((product, index) => (
+            <View key={index} style={styles.productCard}>
+              <Image source={product.image} style={styles.productImage} />
+              <TouchableOpacity style={styles.heartIconWrapper}>
+                <Ionicons name="heart-outline" size={20} color="#FF6B00" />
+              </TouchableOpacity>
+              <Text style={styles.productName}>{product.name}</Text>
+              <Text style={styles.productDescription}>
+                {product.description}
+              </Text>
+              <View style={styles.priceRow}>
+                <Text style={styles.currentPrice}>{product.price}</Text>
+                <Text style={styles.oldPrice}>{product.oldPrice}</Text>
+              </View>
+              <Text style={styles.minOrder}>Min order: {product.minOrder}</Text>
             </View>
-            <Text style={styles.minOrder}>Min order: {product.minOrder}</Text>
-          </View>
-        ))}
-      </View>
-    </ScrollView>
+          ))}
+        </View>
+      </ScrollView>
+    </SafeAreaProvider>
   );
 };
 

@@ -12,6 +12,7 @@ import GroupsScreen from "../screens/GroupsScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import CreateGroupScreen from "../screens/CreateGroupScreen";
 import WalletScreen from "../screens/WalletScreen";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const Tab = createBottomTabNavigator();
 const { width } = Dimensions.get("window");
@@ -92,38 +93,40 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
 
 const TabNavigator = () => {
   return (
-    <Tab.Navigator
-      initialRouteName="Home"
-      tabBar={(props) => <CustomTabBar {...props} />}
-    >
-      <Tab.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{
-          tabBarLabel: "Home",
-          tabBarIconName: "home-heart",
-          headerShown: false,
-        }}
-      />
-      <Tab.Screen
-        name="GroupsScreen"
-        component={GroupsScreen}
-        options={{
-          tabBarLabel: "Groups",
-          tabBarIconName: "group",
-          headerShown: false,
-        }}
-      />
-      <Tab.Screen
-        name="Wallet"
-        component={WalletScreen}
-        options={{
-          tabBarLabel: "Wallet",
-          tabBarIconName: "wallet",
-          headerShown: false,
-        }}
-      />
-    </Tab.Navigator>
+    <SafeAreaProvider>
+      <Tab.Navigator
+        initialRouteName="Home"
+        tabBar={(props) => <CustomTabBar {...props} />}
+      >
+        <Tab.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            tabBarLabel: "Home",
+            tabBarIconName: "home-heart",
+            headerShown: false,
+          }}
+        />
+        <Tab.Screen
+          name="GroupsScreen"
+          component={GroupsScreen}
+          options={{
+            tabBarLabel: "Groups",
+            tabBarIconName: "group",
+            headerShown: false,
+          }}
+        />
+        <Tab.Screen
+          name="Wallet"
+          component={WalletScreen}
+          options={{
+            tabBarLabel: "Wallet",
+            tabBarIconName: "wallet",
+            headerShown: false,
+          }}
+        />
+      </Tab.Navigator>
+    </SafeAreaProvider>
   );
 };
 

@@ -15,80 +15,84 @@ import CreateGroupScreen from "./screens/CreateGroupScreen";
 import TopupScreen from "./screens/TopupScreen";
 import WalletScreen from "./screens/WalletScreen";
 import TransactionScreen from "./screens/TransactionScreen";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="SplashScreen">
-        <Stack.Screen
-          name="SplashScreen"
-          component={SplashScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="OnboardingScreen"
-          component={OnboardingScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="SignupScreen"
-          component={SignUpScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="LoginScreen"
-          component={LoginScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ForgotPassword"
-          component={ForgotPassword}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ResetPassword"
-          component={ResetPassword}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="HomeScreen"
-          component={TabNavigator}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ProductList"
-          component={ProductList}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="ProductDetails"
-          component={ProductDetails}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="CreateGroupScreen"
-          component={CreateGroupScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Topup"
-          component={TopupScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Wallet"
-          component={WalletScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="TransactionScreen"
-          component={TransactionScreen}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <SafeAreaProvider>
+      {" "}
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="SplashScreen">
+          <Stack.Screen
+            name="SplashScreen"
+            component={SplashScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="OnboardingScreen"
+            component={OnboardingScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="SignupScreen"
+            component={SignUpScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="LoginScreen"
+            component={LoginScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ForgotPassword"
+            component={ForgotPassword}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ResetPassword"
+            component={ResetPassword}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="HomeScreen"
+            component={TabNavigator}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ProductList"
+            component={ProductList}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="ProductDetails"
+            component={ProductDetails}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="CreateGroupScreen"
+            component={CreateGroupScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Topup"
+            component={TopupScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Wallet"
+            component={WalletScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="TransactionScreen"
+            component={TransactionScreen}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 };
 

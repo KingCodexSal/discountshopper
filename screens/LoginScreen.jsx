@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import Modal from "react-native-modal";
 import { Ionicons } from "@expo/vector-icons";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -22,7 +23,7 @@ const LoginScreen = ({ navigation }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.content}>
         <Text style={styles.title}>Welcome Back</Text>
 
@@ -107,7 +108,7 @@ const LoginScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </Modal>
-    </View>
+    </SafeAreaView>
   );
 };
 
