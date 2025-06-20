@@ -36,7 +36,7 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
           left: 0,
           width: width / state.routes.length,
           height: 4,
-          backgroundColor: "#FF9800", // Keep the orangish color
+          backgroundColor: "#FF9800",
           transform: [{ translateX }],
         }}
       />
@@ -58,7 +58,7 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
           }
         };
 
-        const color = isFocused ? "#FF9800" : "#4A4A4A"; // Use orangish color for active tab
+        const color = isFocused ? "#FF9800" : "#4A4A4A";
 
         return (
           <TouchableOpacity
@@ -73,7 +73,7 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
               alignItems: "center",
               justifyContent: "center",
               paddingBottom: 10,
-            }} // Added padding for better spacing
+            }}
             activeOpacity={0.7}
           >
             <MaterialCommunityIcons
@@ -93,40 +93,38 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
 
 const TabNavigator = () => {
   return (
-    <SafeAreaProvider>
-      <Tab.Navigator
-        initialRouteName="Home"
-        tabBar={(props) => <CustomTabBar {...props} />}
-      >
-        <Tab.Screen
-          name="Home"
-          component={HomeScreen}
-          options={{
-            tabBarLabel: "Home",
-            tabBarIconName: "home-heart",
-            headerShown: false,
-          }}
-        />
-        <Tab.Screen
-          name="GroupsScreen"
-          component={GroupsScreen}
-          options={{
-            tabBarLabel: "Groups",
-            tabBarIconName: "group",
-            headerShown: false,
-          }}
-        />
-        <Tab.Screen
-          name="Wallet"
-          component={WalletScreen}
-          options={{
-            tabBarLabel: "Wallet",
-            tabBarIconName: "wallet",
-            headerShown: false,
-          }}
-        />
-      </Tab.Navigator>
-    </SafeAreaProvider>
+    <Tab.Navigator
+      initialRouteName="Home"
+      tabBar={(props) => <CustomTabBar {...props} />}
+    >
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{
+          tabBarLabel: "Home",
+          tabBarIconName: "home-heart",
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="GroupsScreen"
+        component={GroupsScreen}
+        options={{
+          tabBarLabel: "Groups",
+          tabBarIconName: "group",
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="Wallet"
+        component={WalletScreen}
+        options={{
+          tabBarLabel: "Wallet",
+          tabBarIconName: "wallet",
+          headerShown: false,
+        }}
+      />
+    </Tab.Navigator>
   );
 };
 

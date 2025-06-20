@@ -22,13 +22,13 @@ const OnboardingScreen = ({ navigation }) => {
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               style={styles.getStartedButton}
-              onPress={() => navigation.navigate("SignupScreen")} // Replace with your next screen
+              onPress={() => navigation.navigate("SignupScreen")}
             >
               <Text style={styles.buttonText}>Get Started</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.loginButton}
-              onPress={() => navigation.navigate("LoginScreen")} // Replace with your login screen
+              onPress={() => navigation.navigate("LoginScreen")}
             >
               <Text style={styles.buttonText2}>Login</Text>
             </TouchableOpacity>

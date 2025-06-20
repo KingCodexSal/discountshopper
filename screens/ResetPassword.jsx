@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  Alert,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -14,6 +15,8 @@ const ResetPassword = ({ navigation }) => {
 
   const handleContinue = () => {
     console.log("Password reset to:", newPassword);
+    Alert.alert("Your Password has been Reset");
+    navigation.navigate("LoginScreen");
   };
 
   return (

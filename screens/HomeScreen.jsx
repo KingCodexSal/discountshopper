@@ -18,7 +18,7 @@ import fitnessImage from "../assets/fitness.png";
 import beautyImage from "../assets/beauty.png";
 import blackCowImage from "../assets/cow.png";
 import tomatoImage from "../assets/tomato.png";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -28,9 +28,8 @@ const HomeScreen = () => {
   };
 
   return (
-    <SafeAreaProvider>
+    <SafeAreaView style={{ flex: 1 }}>
       <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-        {/* Search Bar */}
         <View style={styles.searchWrapper}>
           <View style={styles.searchContainer}>
             <Ionicons
@@ -144,7 +143,7 @@ const HomeScreen = () => {
           ))}
         </View>
       </ScrollView>
-    </SafeAreaProvider>
+    </SafeAreaView>
   );
 };
 
@@ -154,6 +153,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f5f5f5",
     paddingHorizontal: 16,
     paddingTop: 40,
+    paddingBottom: 60,
   },
   searchWrapper: {
     flexDirection: "row",
