@@ -34,11 +34,6 @@ const TopupScreen = ({ navigation }) => {
     setShowSuccessModal(true);
   };
 
-  const handleBackToWallet = () => {
-    setShowSuccessModal(false);
-    navigation.navigate("Wallet");
-  };
-
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -153,10 +148,7 @@ const TopupScreen = ({ navigation }) => {
             <Text style={styles.successMessage}>
               Your wallet balance has been successfully updated.
             </Text>
-            <TouchableOpacity
-              style={styles.backToWalletButton}
-              onPress={handleBackToWallet}
-            >
+            <TouchableOpacity style={styles.backToWalletButton}>
               <Text style={styles.backToWalletText}>Back to Wallet</Text>
             </TouchableOpacity>
           </View>

@@ -5,9 +5,9 @@ import {
   StyleSheet,
   TouchableOpacity,
   FlatList,
-  SafeAreaView,
   StatusBar,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 
 // Sample transaction data
@@ -126,10 +126,8 @@ const TransactionScreen = ({ navigation }) => {
     </View>
   );
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#F5F5F5" />
-
+  const renderHeader = () => (
+    <>
       <View style={styles.header}>
         <TouchableOpacity
           style={styles.backButton}
@@ -137,12 +135,17 @@ const TransactionScreen = ({ navigation }) => {
         >
           <Ionicons name="arrow-back" size={24} color="black" />
         </TouchableOpacity>
-
         <TouchableOpacity style={styles.notificationButton}>
           <Ionicons name="notifications-outline" size={24} color="black" />
         </TouchableOpacity>
       </View>
       <Text style={styles.headerTitle}>Transaction History</Text>
+    </>
+  );
+
+  return (
+    <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
+      <StatusBar barStyle="dark-content" backgroundColor="#F5F5F5" />
 
       <FlatList
         data={transactions}
@@ -150,6 +153,7 @@ const TransactionScreen = ({ navigation }) => {
         keyExtractor={(item) => item.id}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.listContainer}
+        ListHeaderComponent={renderHeader}
       />
     </SafeAreaView>
   );

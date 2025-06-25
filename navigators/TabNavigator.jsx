@@ -12,7 +12,7 @@ import GroupsScreen from "../screens/GroupsScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import CreateGroupScreen from "../screens/CreateGroupScreen";
 import WalletScreen from "../screens/WalletScreen";
-import { SafeAreaProvider } from "react-native-safe-area-context";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const Tab = createBottomTabNavigator();
 const { width } = Dimensions.get("window");
@@ -28,66 +28,72 @@ const CustomTabBar = ({ state, descriptors, navigation }) => {
   }, [state.index]);
 
   return (
-    <View style={{ flexDirection: "row", backgroundColor: "#fff", height: 60 }}>
-      <Animated.View
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: width / state.routes.length,
-          height: 4,
-          backgroundColor: "#FF9800",
-          transform: [{ translateX }],
-        }}
-      />
-      {state.routes.map((route, index) => {
-        const { options } = descriptors[route.key];
-        const label =
-          options.tabBarLabel !== undefined ? options.tabBarLabel : route.name;
-        const isFocused = state.index === index;
+    <SafeAreaView edges={["bottom"]} style={{ backgroundColor: "#fff" }}>
+      <View
+        style={{ flexDirection: "row", backgroundColor: "#fff", height: 60 }}
+      >
+        <Animated.View
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: width / state.routes.length,
+            height: 4,
+            backgroundColor: "#FF9800",
+            transform: [{ translateX }],
+          }}
+        />
+        {state.routes.map((route, index) => {
+          const { options } = descriptors[route.key];
+          const label =
+            options.tabBarLabel !== undefined
+              ? options.tabBarLabel
+              : route.name;
+          const isFocused = state.index === index;
 
-        const onPress = () => {
-          const event = navigation.emit({
-            type: "tabPress",
-            target: route.key,
-            canPreventDefault: true,
-          });
+          const onPress = () => {
+            const event = navigation.emit({
+              type: "tabPress",
+              target: route.key,
+              canPreventDefault: true,
+            });
 
-          if (!isFocused && !event.defaultPrevented) {
-            navigation.navigate(route.name);
-          }
-        };
+            if (!isFocused && !event.defaultPrevented) {
+              navigation.navigate(route.name);
+            }
+          };
 
-        const color = isFocused ? "#FF9800" : "#4A4A4A";
+          const color = isFocused ? "#FF9800" : "#4A4A4A";
 
-        return (
-          <TouchableOpacity
-            key={index}
-            accessibilityRole="button"
-            accessibilityState={isFocused ? { selected: true } : {}}
-            accessibilityLabel={options.tabBarAccessibilityLabel}
-            testID={options.tabBarTestID}
-            onPress={onPress}
-            style={{
-              flex: 1,
-              alignItems: "center",
-              justifyContent: "center",
-              paddingBottom: 10,
-            }}
-            activeOpacity={0.7}
-          >
-            <MaterialCommunityIcons
-              name={options.tabBarIconName}
-              color={color}
-              size={24}
-            />
-            <Text style={{ color, fontSize: 12, fontWeight: "bold" }}>
-              {label}
-            </Text>
-          </TouchableOpacity>
-        );
-      })}
-    </View>
+          return (
+            <TouchableOpacity
+              key={index}
+              accessibilityRole="button"
+              accessibilityState={isFocused ? { selected: true } : {}}
+              accessibilityLabel={options.tabBarAccessibilityLabel}
+              testID={options.tabBarTestID}
+              onPress={onPress}
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+                paddingBottom: 10,
+              }}
+              activeOpacity={0.7}
+            >
+              <MaterialCommunityIcons
+                name={options.tabBarIconName}
+                color={color}
+                size={24}
+              />
+              <Text style={{ color, fontSize: 12, fontWeight: "bold" }}>
+                {label}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
+    </SafeAreaView>
   );
 };
 

@@ -171,14 +171,13 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#F5F5F5",
     paddingHorizontal: 16,
-    paddingTop: 40,
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 20,
-    marginTop: 16,
+    marginTop: 50,
   },
   headerTitle: {
     fontSize: 24,

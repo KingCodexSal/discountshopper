@@ -13,6 +13,7 @@ import {
   FlatList,
 } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const locations = [
   "Lagos",
@@ -35,111 +36,118 @@ const CreateGroupScreen = ({ navigation }) => {
   };
 
   return (
-    <KeyboardAvoidingView
-      style={{ flex: 1 }}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    <SafeAreaView
+      style={{ flex: 1, backgroundColor: "#F5F5F5" }}
+      edges={["top", "bottom"]}
     >
-      <StatusBar barStyle="dark-content" backgroundColor="#FAFAFA" />
-      <ScrollView style={styles.container}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => navigation.goBack()}
-        >
-          <Ionicons name="arrow-back" size={24} color="black" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.notificationButton}>
-          <Ionicons name="notifications-outline" size={24} color="black" />
-        </TouchableOpacity>
-        <Text style={styles.title}>Create Group</Text>
-        <TouchableOpacity style={styles.imageContainer}>
-          <View style={styles.cameraIconContainer}>
-            <Ionicons name="camera-outline" size={30} color="#777" />
-          </View>
-        </TouchableOpacity>
-        <View style={styles.inputContainer}>
-          <Text style={styles.label}>Group Name</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Abiola Thomas"
-            placeholderTextColor="#999"
-          />
-        </View>
-        <View style={styles.inputContainer}>
-          <Text style={styles.label}>No. of Group Members</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="10"
-            placeholderTextColor="#999"
-            keyboardType="numeric"
-          />
-        </View>
-        <View style={styles.inputContainer}>
-          <Text style={styles.label}>Location</Text>
-          <TouchableOpacity
-            style={styles.dropdownContainer}
-            onPress={() => setShowDropdown(true)}
-          >
-            <Text
-              style={[
-                styles.dropdownInput,
-                !selectedLocation && styles.placeholderText,
-              ]}
-            >
-              {selectedLocation || "Select a location"}
-            </Text>
-            <Ionicons
-              name="chevron-down"
-              size={20}
-              color="#999"
-              style={styles.dropdownIcon}
-            />
-          </TouchableOpacity>
-        </View>
-        <View style={styles.inputContainer}>
-          <Text style={styles.label}>Group Description</Text>
-          <TextInput
-            style={[styles.input, styles.textArea]}
-            placeholder="Abiola Thomas"
-            placeholderTextColor="#999"
-            multiline
-            numberOfLines={4}
-            textAlignVertical="top"
-          />
-        </View>
-        <TouchableOpacity style={styles.createButton}>
-          <Text style={styles.createButtonText}>Create</Text>
-        </TouchableOpacity>
-      </ScrollView>
-
-      <Modal
-        visible={showDropdown}
-        transparent={true}
-        animationType="slide"
-        onRequestClose={() => setShowDropdown(false)}
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-        <TouchableOpacity
-          style={styles.modalOverlay}
-          activeOpacity={1}
-          onPress={() => setShowDropdown(false)}
+        <StatusBar barStyle="dark-content" backgroundColor="#FAFAFA" />
+        <ScrollView
+          style={styles.container}
+          showsVerticalScrollIndicator={false}
         >
-          <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Select Location</Text>
-            <FlatList
-              data={locations}
-              keyExtractor={(item) => item}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  style={styles.locationItem}
-                  onPress={() => handleSelectLocation(item)}
-                >
-                  <Text style={styles.locationText}>{item}</Text>
-                </TouchableOpacity>
-              )}
+          <TouchableOpacity
+            style={styles.backButton}
+            onPress={() => navigation.goBack()}
+          >
+            <Ionicons name="arrow-back" size={24} color="black" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.notificationButton}>
+            <Ionicons name="notifications-outline" size={24} color="black" />
+          </TouchableOpacity>
+          <Text style={styles.title}>Create Group</Text>
+          <TouchableOpacity style={styles.imageContainer}>
+            <View style={styles.cameraIconContainer}>
+              <Ionicons name="camera-outline" size={30} color="#777" />
+            </View>
+          </TouchableOpacity>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Group Name</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Abiola Thomas"
+              placeholderTextColor="#999"
             />
           </View>
-        </TouchableOpacity>
-      </Modal>
-    </KeyboardAvoidingView>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>No. of Group Members</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="10"
+              placeholderTextColor="#999"
+              keyboardType="numeric"
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Location</Text>
+            <TouchableOpacity
+              style={styles.dropdownContainer}
+              onPress={() => setShowDropdown(true)}
+            >
+              <Text
+                style={[
+                  styles.dropdownInput,
+                  !selectedLocation && styles.placeholderText,
+                ]}
+              >
+                {selectedLocation || "Select a location"}
+              </Text>
+              <Ionicons
+                name="chevron-down"
+                size={20}
+                color="#999"
+                style={styles.dropdownIcon}
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.inputContainer}>
+            <Text style={styles.label}>Group Description</Text>
+            <TextInput
+              style={[styles.input, styles.textArea]}
+              placeholder="Abiola Thomas"
+              placeholderTextColor="#999"
+              multiline
+              numberOfLines={4}
+              textAlignVertical="top"
+            />
+          </View>
+          <TouchableOpacity style={styles.createButton}>
+            <Text style={styles.createButtonText}>Create</Text>
+          </TouchableOpacity>
+        </ScrollView>
+        <Modal
+          visible={showDropdown}
+          transparent={true}
+          animationType="slide"
+          onRequestClose={() => setShowDropdown(false)}
+        >
+          <TouchableOpacity
+            style={styles.modalOverlay}
+            activeOpacity={1}
+            onPress={() => setShowDropdown(false)}
+          >
+            <View style={styles.modalContent}>
+              <Text style={styles.modalTitle}>Select Location</Text>
+              <FlatList
+                data={locations}
+                keyExtractor={(item) => item}
+                renderItem={({ item }) => (
+                  <TouchableOpacity
+                    style={styles.locationItem}
+                    onPress={() => handleSelectLocation(item)}
+                  >
+                    <Text style={styles.locationText}>{item}</Text>
+                  </TouchableOpacity>
+                )}
+              />
+            </View>
+          </TouchableOpacity>
+        </Modal>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 };
 
@@ -148,19 +156,18 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#F5F5F5",
     paddingHorizontal: 20,
-    paddingTop: 40,
   },
   backButton: {
     position: "absolute",
     top: 0,
-    left: 10,
+    left: 5,
     zIndex: 10,
     padding: 5,
   },
   notificationButton: {
     position: "absolute",
     top: 0,
-    right: 10,
+    right: 5,
     zIndex: 10,
     padding: 5,
   },

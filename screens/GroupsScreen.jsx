@@ -5,7 +5,7 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  FlatList,
+  ScrollView,
 } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 
@@ -75,13 +75,20 @@ const groups = [
   },
 ];
 
+// Helper function to calculate filled percent
+const getFilledPercent = (unitsRemaining, members) => {
+  if (!members) return 0;
+  const percent = 100 - (unitsRemaining / members) * 100;
+  return Math.max(8, Math.round(percent));
+};
+
 const GroupsScreen = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
       <View style={styles.header}>
         <Text style={styles.title}>Groups</Text>
         <TouchableOpacity style={styles.notificationButton}>
-          <Ionicons name="notifications-outline" size={24} color="black" />
+          <Ionicons name="notifications-outline" size={28} color="black" />
         </TouchableOpacity>
       </View>
       <View style={styles.searchContainer}>
@@ -107,23 +114,36 @@ const GroupsScreen = ({ navigation }) => {
           <Text style={styles.createGroupText}>Create Group</Text>
         </TouchableOpacity>
       </View>
-      <FlatList
-        data={groups}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View style={styles.groupItem}>
+      <View style={styles.groupsList}>
+        {groups.map((item) => (
+          <View style={styles.groupItem} key={item.id}>
             <Ionicons
               name={item.icon}
               size={40}
-              color="#666"
+              color="#FFA500"
               style={styles.groupIcon}
             />
             <View style={styles.groupInfo}>
               <Text style={styles.groupName}>{item.name}</Text>
               <Text style={styles.groupMembers}>{item.members} members</Text>
-              <Text style={styles.unitsRemaining}>
-                {item.unitsRemaining} units remaining
-              </Text>
+              <View style={styles.unitsRow}>
+                <View style={styles.progressBarContainer}>
+                  <View
+                    style={[
+                      styles.progressBarFill,
+                      {
+                        width: `${getFilledPercent(
+                          item.unitsRemaining,
+                          item.members
+                        )}%`,
+                      },
+                    ]}
+                  />
+                </View>
+                <Text style={styles.unitsRemaining}>
+                  {item.unitsRemaining} units remaining
+                </Text>
+              </View>
             </View>
             <View style={styles.statusContainer}>
               <Text style={styles.statusText}>{item.status}</Text>
@@ -135,9 +155,9 @@ const GroupsScreen = ({ navigation }) => {
               />
             </View>
           </View>
-        )}
-      />
-    </View>
+        ))}
+      </View>
+    </ScrollView>
   );
 };
 
@@ -146,18 +166,22 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#FAFAFA",
     paddingHorizontal: 16,
-    paddingTop: 40,
+  },
+  groupsList: {
+    marginTop: 8,
+    marginBottom: 24,
   },
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 16,
-    marginTop: 16,
+    marginBottom: 18,
+    marginTop: 50,
   },
   title: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: "bold",
+    color: "#222",
   },
   notificationButton: {
     padding: 8,
@@ -166,7 +190,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 16,
+    marginBottom: 20,
   },
   searchBox: {
     flexDirection: "row",
@@ -176,6 +200,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     flex: 1,
     marginRight: 10,
+    height: 44,
+    borderWidth: 1,
+    borderColor: "#eee",
   },
   searchIcon: {
     marginRight: 8,
@@ -183,16 +210,23 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     height: 40,
+    fontSize: 15,
   },
   createGroupText: {
     color: "#FFA500",
     fontWeight: "bold",
+    fontSize: 15,
+    paddingVertical: 0,
+    paddingHorizontal: 0,
   },
   groupItem: {
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 15,
-    marginBottom: 10,
+    paddingVertical: 18,
+    paddingHorizontal: 0,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ececec",
+    marginBottom: 0,
   },
   groupIcon: {
     marginRight: 15,
@@ -201,8 +235,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   groupName: {
-    fontSize: 16,
+    fontSize: 17,
     fontWeight: "bold",
+    color: "#222",
   },
   groupMembers: {
     fontSize: 14,
@@ -211,6 +246,8 @@ const styles = StyleSheet.create({
   unitsRemaining: {
     fontSize: 12,
     color: "#FFA500",
+    fontWeight: "600",
+    marginLeft: 8,
   },
   statusContainer: {
     alignItems: "center",
@@ -219,11 +256,29 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "#666",
     marginBottom: 4,
+    fontWeight: "600",
   },
   statusDot: {
     width: 10,
     height: 10,
     borderRadius: 5,
+  },
+  unitsRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 2,
+  },
+  progressBarContainer: {
+    width: 48,
+    height: 7,
+    backgroundColor: "#f2f2f2",
+    borderRadius: 4,
+    overflow: "hidden",
+  },
+  progressBarFill: {
+    height: "100%",
+    backgroundColor: "#FFA500",
+    borderRadius: 4,
   },
 });
 
